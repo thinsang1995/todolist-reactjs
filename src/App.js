@@ -1,26 +1,102 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+class App extends React.Component {
+  state = {
+    tasks: [
+      {text: 'task 1', done: false},
+      {text: 'task 2', done: false},
+      {text: 'task 3', done: false}
+    ]
+  }
+
+  handleDelete = (index) => {
+    const newArr = [...this.state.tasks]
+    newArr.splice(index, 1)
+    this.setState({tasks: newArr})
+  }
+
+  handleSubmit = (task) => {
+    this.setState({tasks: [...this.state.tasks, task]})
+  }
+
+  handleCheck = () => {
+    this.setState({done: !this.state.done})
+  }
+  
+  render() {
+    console.log(this.state.done)
+    return (
+      <div className="wrapper">
+        <div className="card">
+          <Header numberTodo={this.state.tasks.length} />
+          <TodoList tasks={this.state.tasks} onDelete={this.handleDelete} onCheck={this.handleCheck} done={this.state.done} />
+          <SubmitForm onSubmitForm={this.handleSubmit} />
+        </div>
+      </div>
+    )
+  }
+}
+
+const Header = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="card-header">
+      <h1>You have {props.numberTodo} todos</h1>
     </div>
-  );
+  )
+}
+
+const TodoList = (props) => {
+  const todos = props.tasks.map((todo, index) => {
+    return <Todo content={todo.text}
+      todo={todo}
+      key={index}
+      id={index} 
+      done={props.done}
+      onDelete={props.onDelete} 
+      onCheck={props.onCheck} />
+  })
+  return (
+    <div className="list-wrapper">
+      {todos}
+    </div>
+  )
+}
+
+const Todo = (props) => {
+  console.log(props.done)
+  return (
+    <div className="list-item" style={{textDecoration: props.done ? 'line-through' : '' }}>
+      <input type="checkbox" defaultChecked={props.done} onChange={props.onCheck} />
+      {props.content}
+      <button className="delete" onClick={() => {props.onDelete(props.id)}}>X</button>
+    </div>
+  )
+}
+
+class SubmitForm extends React.Component {
+  state = {text: '', done: false}
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    if(this.state.text === '') return
+    this.props.onSubmitForm(this.state)
+    this.setState({text: ''})
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          className="input"
+          placeholder="Enter Item"
+          value={this.state.text}
+          onChange={(e) => this.setState({text: e.target.value})} />
+        <button className="button">Submit</button>
+      </form>
+    )
+  }
 }
 
 export default App;

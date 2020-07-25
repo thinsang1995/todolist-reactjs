@@ -1,38 +1,69 @@
-.App {
-  text-align: center;
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background-color: #fff;
+  min-height: 100vh;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"%3E%3Cpath fill="%239C92AC" fill-opacity="0.4" d="M1 3h1v1H1V3zm2-2h1v1H3V1z"%3E%3C/path%3E%3C/svg%3E');
 }
 
-.App-link {
-  color: #61dafb;
+.card {
+  background-color: #fff;
+  width: 25rem;
+  min-height: 50vh;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card-header {
+  text-align: center;
+  border-bottom: 1px solid #dbdbdb;
 }
+
+.list-wrapper {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.list-item {
+  border-bottom: 1px solid #dbdbdb;
+  height: 2rem;
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.delete {
+  float: right;
+}
+
+.button, .input {
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  margin: 5px;
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.button {
+  height: 2.3rem;
+  width: 20%;
+}
+
+.input {
+  height: 2rem;
+  width: 73%;
+  padding-left: 5px;
+}
+
+/* input[type='checkbox'] {
+  height: 15px;
+  width: 15px;
+  vertical-align: middle;
+  margin-right: 10px;
+} */
+
