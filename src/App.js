@@ -66,14 +66,14 @@ const TodoList = (props) => {
 
 class Todo extends React.Component {
 
-  onClickDone = () => {
+  onDone = () => {
     this.props.onCheck(this.props.id)
   }
 
   render() {
     return (
       <div className="list-item">
-        <span className="icon" onClick={this.onClickDone} />
+        <span className="icon" onClick={this.onDone} />
         <div className="text" style={{textDecoration: this.props.done ? 'line-through' : '' }}>
           {this.props.content}
         </div>
